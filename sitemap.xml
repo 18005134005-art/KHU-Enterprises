@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ══ Main page ══ -->
+  <url>
+    <loc>https://khu-enterprise.com/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/lj-biker-black-front.jpg</image:loc>
+      <image:title>KHU Enterprise – Genuine Leather Biker Jacket Pakistan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/lj-bomber-brown-man.jpg</image:loc>
+      <image:title>KHU Enterprise – Bomber Leather Jacket Pakistan Wholesale</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/products/tracksuit-summer-men-1.jpg</image:loc>
+      <image:title>KHU Enterprise – Summer Tracksuit Wholesale Pakistan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/products/gym-set-women-1.jpg</image:loc>
+      <image:title>KHU Enterprise – Women Gym Set Wholesale Pakistan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/wallet-black-bifold.jpg</image:loc>
+      <image:title>KHU Enterprise – Handcrafted Leather Wallet Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <!-- ══ Leather Jackets ══ -->
+  <url>
+    <loc>https://khu-enterprise.com/#leather-jackets</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/lj-biker-black-front.jpg</image:loc>
+      <image:title>Genuine Leather Biker Jacket – KHU Enterprise Pakistan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/lj-cafe-racer-khaki.jpg</image:loc>
+      <image:title>Cafe Racer Leather Jacket – KHU Enterprise Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <!-- ══ Leather Vests ══ -->
+  <url>
+    <loc>https://khu-enterprise.com/#leather-vests</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://khu-enterprise.com/images/products/vest-leather-men-1.jpg</image:loc>
+      <image:title>Leather Biker Vest Men – KHU Enterprise Pakistan</image:title>
+    </image:image>
+  </url>
+
+  <!-- ══ Tracksuits ══ -->
+  <url>
+    <loc>https://khu-enterprise.com/#tracksuit
