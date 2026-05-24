@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block download scripts and utility files
+Disallow: /download_images.py
+Disallow: /download_images.ps1
+Disallow: /download_images.bat
+
+Sitemap: https://khu-enterprise.com/sitemap.xml

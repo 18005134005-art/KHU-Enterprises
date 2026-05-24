@@ -510,9 +510,9 @@ const products = [
   /* LEATHER BAGS */
   { id:40, name:"Voyager Leather Duffle", category:"leather-bags", group:"leather", gender:"unisex",
     priceUSD:135, origUSD:172,
-    image:"images/products/bag-messenger-1.jpg",
-    cdnImage:"https://images.unsplash.com/photo-1525103504173-8dc1582c7430?w=600&q=85&auto=format&fit=crop",
-    images:["https://images.unsplash.com/photo-1544511196-1646449a253b?w=700&q=85&auto=format&fit=crop","https://images.unsplash.com/photo-1515023677547-593d7638cbd6?w=700&q=85&auto=format&fit=crop"],
+    image:"images/products/duffle-leather-1.jpg",
+    cdnImage:"images/products/duffle-leather-1.jpg",
+    images:["images/products/duffle-leather-2.jpg","images/products/duffle-leather-3.jpg","images/products/duffle-leather-4.jpg","images/products/duffle-leather-5.jpg","images/products/duffle-leather-6.jpg"],
     rating:4.9, reviews:267, badge:"sale",
     sizes:["One Size"], colors:["#8B4513","#1A1A1A","#4A235A"],
     description:"Handcrafted full-grain leather duffle with brass fittings. Spacious main compartment with shoe pocket and adjustable strap.",
@@ -544,9 +544,9 @@ const products = [
   /* LEATHER BELTS */
   { id:43, name:"Premium Leather Belt – Unisex", category:"leather-belts", group:"leather", gender:"unisex",
     priceUSD:48, origUSD:62,
-    image:"images/belt-black-pair.jpg",
-    cdnImage:"https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=85&auto=format&fit=crop",
-    images:["images/belt-brown-stitched.jpg","https://images.unsplash.com/photo-1677326764757-62ad261030bf?w=700&q=85&auto=format&fit=crop"],
+    image:"images/products/belt-leather-1.jpg",
+    cdnImage:"images/products/belt-leather-1.jpg",
+    images:["images/products/belt-leather-2.jpg","images/products/belt-leather-3.jpg","images/products/belt-leather-4.jpg","images/products/belt-leather-5.jpg"],
     rating:4.7, reviews:389, badge:"sale",
     sizes:["S (28-32)","M (33-36)","L (37-40)","XL (41-44)"], colors:["#1A1A1A","#8B4513","#D4AC0D"],
     description:"Full-grain leather belt with solid brass buckle. 35mm width, ideal for dress and casual wear.",
@@ -777,28 +777,22 @@ function renderSalePage() {
 /* ================================================================
    FILTERS  (HTML uses checkboxes + radio + range slider)
 ================================================================ */
+/* Sport/gym sub-categories for the "Sports & Gym" filter checkbox */
+var _SPORTS_CATS = ['gym-sets','compression','gym-shorts','sports-bra','biker-shorts','running','yoga','football','womens-swim','mens-swim'];
+
 function applyFilters() {
-  // Read checked category checkboxes
+  // Collect checked values (excluding "all")
   var checked = [];
   document.querySelectorAll('.filters-sidebar input[type=checkbox]:checked').forEach(function(cb){
     if (cb.value !== 'all') checked.push(cb.value);
   });
-  if (checked.length === 0) {
-    state.filterGroup    = 'all';
-    state.filterCategory = '';
-  } else if (checked.length === 1) {
-    var v = checked[0];
-    if (v === 'hosiery' || v === 'leather') {
-      state.filterGroup    = v;
-      state.filterCategory = '';
-    } else {
-      state.filterGroup    = 'all';
-      state.filterCategory = v;
-    }
-  } else {
-    state.filterGroup    = 'all';
-    state.filterCategory = '';
-  }
+
+  // Store checked filter values on state for getFiltered()
+  state.filterChecked = checked;
+
+  // Uncheck the "All" box if specific filters are chosen
+  var allCb = document.getElementById('catAll');
+  if (allCb) allCb.checked = (checked.length === 0);
 
   // Gender radio
   var genderRadio = document.querySelector('.filters-sidebar input[name=gender]:checked');
@@ -822,6 +816,7 @@ function clearAllFilters() {
   state.filterMaxPrice = 500;
   state.sortBy         = 'default';
   state.search         = '';
+  state.filterChecked  = [];
 
   var inp = document.getElementById('searchInput');
   if (inp) inp.value = '';
@@ -855,12 +850,25 @@ function updatePriceFilter(val) {
 // Override getFiltered to use correct sort keys
 function getFiltered() {
   var list = products.slice();
+  var checked = state.filterChecked || [];
 
-  if (state.filterGroup && state.filterGroup !== 'all') {
-    list = list.filter(function(p){ return p.group === state.filterGroup; });
-  }
-  if (state.filterCategory) {
-    list = list.filter(function(p){ return p.category === state.filterCategory; });
+  if (checked.length > 0) {
+    list = list.filter(function(p) {
+      return checked.some(function(v) {
+        if (v === 'hosiery')  return p.group === 'hosiery';
+        if (v === 'leather')  return p.group === 'leather';
+        if (v === 'sports')   return _SPORTS_CATS.indexOf(p.category) !== -1;
+        return p.category === v;
+      });
+    });
+  } else {
+    // legacy path for filterGroup/filterCategory set by nav links
+    if (state.filterGroup && state.filterGroup !== 'all') {
+      list = list.filter(function(p){ return p.group === state.filterGroup; });
+    }
+    if (state.filterCategory) {
+      list = list.filter(function(p){ return p.category === state.filterCategory; });
+    }
   }
   if (state.filterGender && state.filterGender !== 'all') {
     list = list.filter(function(p){ return p.gender === state.filterGender || p.gender === 'unisex'; });
